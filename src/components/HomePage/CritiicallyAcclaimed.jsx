@@ -3,20 +3,32 @@ import { useState, useEffect } from "react";
 import { getCritiicallyAcclaimed } from "../../services/media";
 import SkeletonCards from "../SkeletonLoadingState/SkeletonCards";
 import { Link } from "react-router-dom";
+import ErrorComponent from "./ErrorComponent";
 
 const CritiicallyAcclaimed = () => {
   const [underRatedMoives, setUnderRatedMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorState, setErrorState] = useState(null);
 
   useEffect(() => {
     const callingFunc = async () => {
-      setIsLoading(true);
-      const arr = await getCritiicallyAcclaimed();
-      setUnderRatedMovies(arr.slice(0, 10));
-      setIsLoading(false);
+      try {
+        setErrorState(null);
+        setIsLoading(true);
+        const arr = await getCritiicallyAcclaimed();
+        setUnderRatedMovies(arr.slice(0, 10));
+      } catch (err) {
+        setErrorState(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
     callingFunc();
   }, []);
+
+  if (errorState) {
+    return <ErrorComponent />;
+  }
 
   return (
     <div className="h-full w-full text-white text-3xl">

@@ -2,9 +2,14 @@ import Card from "./Card";
 import Pagination from "./Pagination";
 import TrendingSkeletonCard from "../SkeletonLoadingState/TrendingSkeletonCard";
 import { Link } from "react-router-dom";
+import ErrorStateComponent from "./ErrorStateComponent";
 
-const Content = ({ trending, isLoading, page, setPage }) => {
+const Content = ({ trending, isLoading, page, setPage, errorState }) => {
   let id = -1;
+
+  if (errorState) {
+    return <ErrorStateComponent />;
+  }
   return (
     <>
       <div className="h-fit w-[80%] text-white">

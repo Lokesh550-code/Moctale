@@ -6,21 +6,33 @@ import RowSkeletonCard from "../SkeletonLoadingState/RowSkeletonCard";
 import { NavLink } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import ErrorComponent from "./ErrorComponent";
 
 const SectionRow = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [period, setPeriod] = useState("/trending/movie/week");
   const [isLoading, setIsLoading] = useState(true);
+  const [errorState, setErrorState] = useState(null);
 
   useEffect(() => {
     const getmovies = async (period) => {
-      setIsLoading(true);
-      const arr = await getTrending(`${period}`);
-      setTrendingMovies(arr.slice(0, 5));
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        setErrorState(null);
+        const arr = await getTrending(`${period}`);
+        setTrendingMovies(arr.slice(0, 5));
+      } catch (err) {
+        setErrorState(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getmovies(period);
   }, [period]);
+
+  if(errorState) {
+    return <ErrorComponent />
+  }
 
   return (
     <>

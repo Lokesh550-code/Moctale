@@ -1,22 +1,35 @@
 import { getTop } from "../../services/media";
 import SkeletonCards from "../SkeletonLoadingState/SkeletonCards";
+import ErrorComponent from "./ErrorComponent";
 import MovieCard from "./MovieCard";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const TopRated = () => {
   const [top, setTop] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorState, setErrorState] = useState(null);
 
   useEffect(() => {
     const callingFunc = async () => {
-      setIsLoading(true);
-      const arr = await getTop();
-      setTop(arr.slice(0, 10));
-      setIsLoading(false);
+      try {
+        setErrorState(null);
+        setIsLoading(true);
+        const arr = await getTop();
+        setTop(arr.slice(0, 10));
+      } catch (err) {
+        setErrorState(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     callingFunc();
   }, []);
+
+  if(errorState) {
+    return <ErrorComponent />
+  }
+
   return (
     <div className="h-full w-full text-white text-3xl">
       <div className="h-7 w-full">
