@@ -2,6 +2,7 @@ import MovieCard from "./MovieCard";
 import { useEffect, useState } from "react";
 import { getTalk } from "../../services/media";
 import SkeletonCards from "../SkeletonLoadingState/SkeletonCards";
+import { Link } from "react-router-dom";
 const TalkSection = () => {
 
     const [movieData, setMovieData] = useState([]);
@@ -12,8 +13,7 @@ const TalkSection = () => {
       setIsLoading(true);
       const arr = await getTalk();
           arr.length = 10;
-          const finalArr = arr.map(item => ({...item, media_type: 'Movie'}))
-          setMovieData(finalArr);
+          setMovieData(arr);
           setIsLoading(false);
     }
 
@@ -34,6 +34,7 @@ const TalkSection = () => {
         })}
         {!isLoading && movieData.map((item, idx) => {
           return (
+            <Link to={`/${item.media_type}/${item.id}`}>
             <MovieCard
               id={item.id}
               poster_path={item.poster_path}
@@ -41,6 +42,7 @@ const TalkSection = () => {
               title={item.title || item.name}
               key={idx}
             />
+            </ Link>
           );
         })}
       </div>

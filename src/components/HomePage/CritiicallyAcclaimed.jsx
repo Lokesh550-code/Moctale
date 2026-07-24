@@ -2,6 +2,7 @@ import MovieCard from "./MovieCard";
 import { useState, useEffect } from "react";
 import { getCritiicallyAcclaimed } from "../../services/media";
 import SkeletonCards from "../SkeletonLoadingState/SkeletonCards";
+import { Link } from "react-router-dom";
 
 const CritiicallyAcclaimed = () => {
   const [underRatedMoives, setUnderRatedMovies] = useState([]);
@@ -32,13 +33,15 @@ const CritiicallyAcclaimed = () => {
         {!isLoading &&
           underRatedMoives.map((item, idx) => {
             return (
-              <MovieCard
-                id={item.id}
-                poster_path={item.poster_path}
-                type={item.media_type}
-                title={item.title || item.name}
-                key={idx}
-              />
+              <Link to={`/${item.media_type}/${item.id}`}>
+                <MovieCard
+                  id={item.id}
+                  poster_path={item.poster_path}
+                  type={item.media_type}
+                  title={item.title || item.name}
+                  key={idx}
+                />
+              </Link>
             );
           })}
       </div>

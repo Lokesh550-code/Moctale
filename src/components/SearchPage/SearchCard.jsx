@@ -35,7 +35,7 @@ const SearchCard = (props) => {
           </h3>
         )}
 
-        <p className="text-stone-500 text-sm capitalize">{props.mediaType}</p>
+        <p className="text-stone-500 text-sm capitalize">{props.media_type}</p>
       </div>
     </div>
   );

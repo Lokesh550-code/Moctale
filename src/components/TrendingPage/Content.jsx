@@ -1,6 +1,7 @@
 import Card from "./Card";
 import Pagination from "./Pagination";
 import TrendingSkeletonCard from "../SkeletonLoadingState/TrendingSkeletonCard";
+import { Link } from "react-router-dom";
 
 const Content = ({ trending, isLoading, page, setPage }) => {
   let id = -1;
@@ -21,18 +22,20 @@ const Content = ({ trending, isLoading, page, setPage }) => {
             trending.map((item, key) => {
               id++;
               return (
-                <Card
-                  key={key}
-                  id={id}
-                  title={item.title}
-                  name={item.name}
-                  media_type={item.media_type}
-                  release_date={item.release_date}
-                  vote_average={item.vote_average}
-                  poster_path={item.poster_path}
-                  image={item.image}
-                  first_air_date={item.first_air_date}
-                />
+                <Link to={`/${item.media_type}/${item.id}`}>
+                  <Card
+                    key={key}
+                    id={id}
+                    title={item.title}
+                    name={item.name}
+                    media_type={item.media_type}
+                    release_date={item.release_date}
+                    vote_average={item.vote_average}
+                    poster_path={item.poster_path}
+                    image={item.image}
+                    first_air_date={item.first_air_date}
+                  />
+                </Link>
               );
             })}
         </div>

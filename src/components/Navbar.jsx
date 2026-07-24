@@ -1,6 +1,8 @@
 import { Search, X } from "lucide-react";
 import { useState } from "react";
 import SearchComponent from "./SearchPage/SearchComponent";
+import { NavLink } from "react-router-dom";
+
 const Navbar = () => {
   const [isClicked, setIsClicked] = useState(false);
 
@@ -14,6 +16,10 @@ const Navbar = () => {
         <div className="w-1/2 h-full flex items-center justify-start ">
           <h1 className="text-white font-semibold text-3xl">Kshan</h1>
         </div>
+        <div className="text-white text-lg h-full w-1/2 flex justify-center items-center gap-6 navbar-container">
+          <NavLink className={({isActive}) => `${isActive? "text-orange-500":"text-white"}`} to="/">Home</NavLink>
+          <NavLink className={({isActive}) => `${isActive? "text-orange-500":"text-white"}`} to="/trending">Trending</NavLink>
+        </div>
         <div className="w-1/2 h-full flex gap-4 items-center justify-end">
           <button
             onClick={() => {
@@ -21,21 +27,12 @@ const Navbar = () => {
             }}
             className="text-white cursor-pointer"
           >
-            {!isClicked? <Search size={20} /> : <X size={23}/>}
+            {!isClicked ? <Search size={20} /> : <X size={23} />}
           </button>
-          {/* <button className="text-white cursor-pointer">
-            <Bell size={20} />
-          </button>
-          <button className="text-white cursor-pointer">
-            <EllipsisVertical size={20} />
-          </button> */}
         </div>
       </div>
 
-      {/* <div className="w-full h-screen bg-black  z-999 opacity-85"> */}
-      <SearchComponent isClicked={isClicked} setIsClicked={setIsClicked}/>
-
-      {/* </div> */}
+      <SearchComponent isClicked={isClicked} setIsClicked={setIsClicked} />
     </>
   );
 };

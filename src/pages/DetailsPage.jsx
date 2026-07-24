@@ -4,11 +4,12 @@ import CastComponet from "../components/DetailsPage/CastComponet";
 import GenreComponet from "../components/DetailsPage/GenreComponet";
 import { mediaDetail } from "../services/media";
 import ReviewComponent from "../components/DetailsPage/ReviewComponent";
-
-        const mediaType = `movie`;
-        const id = 27205;
+import { useParams } from "react-router-dom";
 
 const DetailsPage = () => {
+
+  const {mediaType, id} = useParams();
+
   const [isLoading, setIsLoading] = useState(true);
   const [result, setResult] = useState(null);
   useEffect(() => {
@@ -19,7 +20,7 @@ const DetailsPage = () => {
       setIsLoading(false);
     };
     api();
-  }, []);
+  }, [mediaType, id]);
 
   return (
     <div className="min-h-screen w-full mt-18 text-white">

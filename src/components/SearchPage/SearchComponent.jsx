@@ -8,6 +8,7 @@ import SearchSkeletonCard from "../SkeletonLoadingState/SearchSkeletonCard";
 import EmptyState from "./EmptyState";
 import NoResultState from "./NoResultState";
 import ErrorState from "./ErrorState";
+import { Link } from "react-router-dom";
 
 const SearchComponent = ({ isClicked, setIsClicked }) => {
   const lenis = useLenis();
@@ -26,6 +27,8 @@ const SearchComponent = ({ isClicked, setIsClicked }) => {
   const [error, setError] = useState(null);
 
   const showRef = useRef(null);
+
+  console.log(results);
 
   useEffect(() => {
     const handleClickedOutside = (event) => {
@@ -47,11 +50,11 @@ const SearchComponent = ({ isClicked, setIsClicked }) => {
 
     switch (searchType) {
       case "movie":
-        return "Movie";
+        return "movie";
       case "tv":
-        return "Tv Show";
+        return "tv";
       case "person":
-        return "Person";
+        return "person";
       default:
         return "";
     }
@@ -139,21 +142,31 @@ const SearchComponent = ({ isClicked, setIsClicked }) => {
           ) : results.length === 0 ? (
             <NoResultState />
           ) : (
-            results.map((result, key) => (
-              <SearchCard
-                key={key}
-                id={result.id || result.mal_id}
-                title={result.title || result.name}
-                mediaType={getMediaType(result)}
-                image={
-                  result.poster_path
-                    ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
-                    : result.profile_path
-                      ? `https://image.tmdb.org/t/p/w500${result.profile_path}`
-                      : result.images?.jpg?.image_url
-                }
-              />
-            ))
+            results.map((item) => {
+              const mediaType = getMediaType(item).toLowerCase();
+              console.log(item.media_type, getMediaType(item));
+
+              return (
+                <Link
+                  key={item.id}
+                  to={`/${mediaType}/${item.id}`}
+                  onClick={() => setIsClicked(false)}
+                >
+                  <SearchCard
+                    id={item.id}
+                    title={item.title || item.name}
+                    media_type={mediaType}
+                    image={
+                      item.poster_path
+                        ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+                        : item.profile_path
+                          ? `https://image.tmdb.org/t/p/w500${item.profile_path}`
+                          : item.images?.jpg?.image_url
+                    }
+                  />
+                </Link>
+              );
+            })
           )}
         </div>
       </div>

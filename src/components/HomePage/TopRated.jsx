@@ -2,6 +2,7 @@ import { getTop } from "../../services/media";
 import SkeletonCards from "../SkeletonLoadingState/SkeletonCards";
 import MovieCard from "./MovieCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 const TopRated = () => {
   const [top, setTop] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,13 +32,15 @@ const TopRated = () => {
         {!isLoading &&
           top.map((item, idx) => {
             return (
-              <MovieCard
-                id={item.id}
-                poster_path={item.poster_path}
-                type={item.media_type}
-                title={item.title || item.name}
-                key={idx}
-              />
+              <Link to={`/${item.media_type}/${item.id}`}>
+                <MovieCard
+                  id={item.id}
+                  poster_path={item.poster_path}
+                  type={item.media_type}
+                  title={item.title || item.name}
+                  key={idx}
+                />
+              </Link>
             );
           })}
       </div>
