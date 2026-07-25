@@ -28,8 +28,6 @@ const SearchComponent = ({ isClicked, setIsClicked }) => {
 
   const showRef = useRef(null);
 
-  console.log(results);
-
   useEffect(() => {
     const handleClickedOutside = (event) => {
       if (showRef.current && !showRef.current.contains(event.target)) {

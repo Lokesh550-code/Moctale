@@ -1,14 +1,23 @@
 import SkeletonCastComponent from "../SkeletonLoadingState/SkeletonCastComponent";
 import CastCard from "./CastCard";
+import EmptyCastState from "./EmptyCastState";
 
 const CastComponet = ({ cast, crew, isLoading }) => {
   if (isLoading) {
     return <SkeletonCastComponent />;
   }
 
+  if (!cast || cast.length === 0 || !crew || crew.length === 0) {
+    return <EmptyCastState />;
+  }
+
   const castArray = cast.slice(0, 9);
-  const director = crew.find((person) => person.job === "Director") ?? crew.find(person => person.job === "Creator")?? crew.find(person => person.job === "Executive Producer") ?? null;
-  const newArr = director? [director, ...castArray] : castArray;
+  const director =
+    crew.find((person) => person.job === "Director") ??
+    crew.find((person) => person.job === "Creator") ??
+    crew.find((person) => person.job === "Executive Producer") ??
+    null;
+  const newArr = director ? [director, ...castArray] : castArray;
 
   return (
     <div className="h-fit w-full px-10 py-6 mt-10 flex flex-col items-center gap-2 border-b-2 border-t-2 border-stone-600">

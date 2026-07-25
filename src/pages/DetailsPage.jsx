@@ -28,33 +28,39 @@ const DetailsPage = () => {
     api();
   }, [mediaType, id]);
 
-  if(errorState) {
-    return <ErrorStateComponent />
+  if (errorState) {
+    return <ErrorStateComponent />;
   }
 
   return (
     <div className="min-h-screen w-full mt-18 text-white">
       {<HeroPage result={result} isLoading={isLoading} />}
-      {
+      {mediaType === "person" ? (
+        ""
+      ) : (
         <GenreComponet
           genre={result?.genres}
           origin_country={result?.origin_country}
           isLoading={isLoading}
         />
-      }
-      {
+      )}
+      {mediaType === "person" ? (
+        ""
+      ) : (
         <CastComponet
           cast={result?.credits?.cast}
           crew={result?.credits?.crew}
           isLoading={isLoading}
         />
-      }
-      {
+      )}
+      {mediaType === "person" ? (
+        ""
+      ) : (
         <ReviewComponent
           reviews={result?.reviews?.results}
           isLoading={isLoading}
         />
-      }
+      )}
     </div>
   );
 };

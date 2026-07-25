@@ -1,6 +1,7 @@
 import ReviewCard from "./ReviewCard";
 import { useState } from "react";
 import SkeletonReviewComponent from "../SkeletonLoadingState/SkeletonReviewComponent";
+import EmptyReviewState from "./EmptyReviewState";
 
 const ReviewComponent = ({ reviews, isLoading }) => {
   const [selected, setSelected] = useState(``);
@@ -8,6 +9,10 @@ const ReviewComponent = ({ reviews, isLoading }) => {
 
   if(isLoading) {
     return <SkeletonReviewComponent />
+  }
+
+  if(!reviews || reviews.length === 0) {
+    return <EmptyReviewState/>
   }
 
   return (
@@ -33,7 +38,7 @@ const ReviewComponent = ({ reviews, isLoading }) => {
       </div>
       <div
         onClick={() => setIsClicked(!isClicked)}
-        className="h-10 flex items-center justify-center mx-10 my-2 cursor-pointer hover:bg-stone-900"
+        className={`h-10 flex items-center justify-center mx-10 my-2 cursor-pointer hover:bg-stone-900 ${reviews.length > 2 ? 'block': 'hidden'}`}
       >
         {isClicked ? "Show Less" : "Show more"}
       </div>

@@ -3,7 +3,7 @@ const ReviewCard = ({ item, setSelected, isSelected }) => {
     // console.log(isLong);
     // console.log(item.content.split(' ').length)
   return (
-    <div className=" bg-stone-800 transition cursor-pointer rounded-md overflow-hidden">
+    <div className="w-[85%] bg-stone-800 transition cursor-pointer rounded-md overflow-hidden">
       <div className={`${isSelected? "h-fit": "h-24"} w-full flex flex-col gap-3 p-2 overflow-hidden`}>
         <div>
           <h1>Author: {item.author}</h1>
