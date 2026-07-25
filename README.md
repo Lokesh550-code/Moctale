@@ -39,27 +39,27 @@ Explore trending movies, TV shows, and people through a clean interface featurin
 
 ### Home
 
-(./src/screenshots/Home.png)
+![Home screenshot](./src/screenshots/Home.png)
 
 ### Search
 
-(./src/screenshots/Search.png)
+![Search screenshot](./src/screenshots/Search.png)
 
 ### Trending
 
-(./src/screenshots/Trending.png)
+![Trending screenshot](./src/screenshots/Trending.png)
 
-### Movie Details
+### Details
 
-(./src/screenshots/detailsHero.png)
-(./src/screenshots/detailsCastReview.png)
+![Details screenshot](./src/screenshots/detailsHero.png)
+![Details screenshot](./src/screenshots/detailsCastReview.png)
 
 ---
 
 ## Getting Started
 
 ```bash
-git clone https://github.com/yourusername/moctale.git
+git clone hhttps://github.com/Lokesh550-code/kshan.git
 
 cd moctale
 
