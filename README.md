@@ -4,7 +4,7 @@ A modern movie and TV discovery platform built with React, Vite, and the TMDB AP
 
 Explore trending movies, TV shows, and people through a clean interface featuring detailed pages, search functionality, dynamic routing, and carefully designed loading, error, and empty states.
 
-![Home Screenshot](./src/screenshots/Home.png)
+![Home Screenshot](./screenshots/Home.png)
 
 ---
 
@@ -39,20 +39,20 @@ Explore trending movies, TV shows, and people through a clean interface featurin
 
 ### Home
 
-![Home screenshot](./src/screenshots/Home.png)
+![Home screenshot](./screenshots/Home.png)
 
 ### Search
 
-![Search screenshot](./src/screenshots/Search.png)
+![Search screenshot](./screenshots/Search.png)
 
 ### Trending
 
-![Trending screenshot](./src/screenshots/Trending.png)
+![Trending screenshot](./screenshots/Trending.png)
 
 ### Details
 
-![Details screenshot](./src/screenshots/detailsHero.png)
-![Details screenshot](./src/screenshots/detailsCastReview.png)
+![Details screenshot](./screenshots/detailsHero.png)
+![Details screenshot](./screenshots/detailsCastReview.png)
 
 ---
 
