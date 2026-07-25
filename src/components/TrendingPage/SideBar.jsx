@@ -1,6 +1,6 @@
 import { CircleDot, Circle } from "lucide-react";
 import { useState } from "react";
-import { getCurrentMonthRange } from "../../utils/DateUtils.js";
+import { getCurrentMonthRange } from "../../utils/dateUtils.js";
 
 const SideBar = (props) => {
   const time = ["This Week", "This Month", "This Year", "All Time"];
